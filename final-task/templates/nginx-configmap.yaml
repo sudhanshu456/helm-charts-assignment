@@ -1,0 +1,22 @@
+apiVersion: v1
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Time to celebrate!</title>
+    <style>
+    html { color-scheme:light dark; }
+    body { width: 35em; margin: 0 auto; font-family: Tahoma, Verdana, Arial, sans-serif; background-color: cyan; }
+    </style>
+    </head>
+    <body>
+    <h1>Time to celebrate!</h1>
+    <h2>You have successfully completed Helm Module!!!!</h2>
+    </body>
+    </html>
+kind: ConfigMap
+metadata:
+  name: {{ include "final-task.fullname" . }}
+  labels:
+    {{- include "final-task.labels" . | nindent 4 }}

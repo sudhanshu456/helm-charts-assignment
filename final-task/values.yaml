@@ -1,0 +1,8 @@
+serviceAccount:
+  create: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+nameOverride: "helm-module"

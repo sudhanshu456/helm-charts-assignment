@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "final-task.fullname" . }}
+  labels:
+    {{- include "final-task.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "final-task.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "final-task.labels" . | nindent 8 }}
+    spec:
+      {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ include "final-task.fullname" . }}
+      {{- end }}
+      volumes:
+      - name: nginx-volume
+        configMap:
+          name: {{ include "final-task.fullname" . }}
+          items: 
+          - key: index.html
+            path: index.html
+      containers:
+        - name: testchart
+          image: "nginx:1.16.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+          - name: nginx-volume
+            mountPath: /usr/share/nginx/html
