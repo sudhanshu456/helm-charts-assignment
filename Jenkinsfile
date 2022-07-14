@@ -3,9 +3,10 @@
 pipeline {
     agent any
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-    }
+  tools {
+  git 'Default'
+}
+
 
     stages {
         stage('Git Clone') {
