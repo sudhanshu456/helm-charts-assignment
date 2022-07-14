@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Deploy') {
             steps{
-                withCredentials([file(credentialsId: 'kindconf', variable: 'KUBECONFIG')]) {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                     sh 'cat $KUBECONFIG > ~/.kube/config'
                     sh 'helm install myrelease final-task'
                 }
