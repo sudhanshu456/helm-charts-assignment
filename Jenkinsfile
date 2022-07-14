@@ -34,6 +34,13 @@ pipeline {
                     sh 'helm lint final-task'
                     sh 'helm package final-task'
                     }
+                post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    archiveArtifacts '*.tar.gz'
+                }
+            }
         stage('Deploy')
         {
             script{
