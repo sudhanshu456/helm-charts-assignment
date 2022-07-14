@@ -18,7 +18,7 @@ pipeline {
 
          stage('package') {
                 steps{
-                    sh 'wget https://get.helm.sh/helm-v3.6.1-linux-amd64.tar.gz'
+                    // sh 'wget https://get.helm.sh/helm-v3.6.1-linux-amd64.tar.gz'
                     sh 'ls -a'
                     sh 'rm -rf helm-v3.6.1-linux-amd64.tar.gz'
                     sh 'tar -xvzf helm-v3.6.1-linux-amd64.tar.gz'
