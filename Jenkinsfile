@@ -1,8 +1,12 @@
 #!/usr/bin/env groovy 
 
 pipeline {
-    agent any
-
+    agent 
+      docker {
+            image 'ubuntu'
+            args '-u root:sudo '
+        }
+    }
   tools {
         git 'Default'
     }
