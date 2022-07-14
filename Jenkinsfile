@@ -39,7 +39,7 @@ pipeline {
             script{
                 withCredentials([file(credentialsId: 'kindconf', variable: 'KUBECONFIG')]) {
                     sh 'cat $KUBECONFIG > ~/.kube/config'
-                    sh 'helm install final-task'
+                    sh 'helm install myrelease final-task'
                     }
             }
         }
