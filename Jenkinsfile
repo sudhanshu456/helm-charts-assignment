@@ -18,7 +18,7 @@ pipeline {
                     }
                 post {
                 success {
-                    archiveArtifacts '*.tar.gz'
+                    archiveArtifacts '*.tgz'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                     sh 'mkdir -p ~/.kube'
                     sh 'cat $KUBECONFIG > ~/.kube/config'
-                    sh 'helm upgrade myrelease final-task'
+                    sh 'helm upgrade myrelease final-task-0.1.0.tgz'
                 }
             }
         }
