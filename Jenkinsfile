@@ -5,7 +5,7 @@ pipeline {
 
   tools {
   git 'Default'
-}
+    }
 
 
     stages {
@@ -42,6 +42,7 @@ pipeline {
                     archiveArtifacts '*.tar.gz'
                 }
             }
+        }
         stage('Deploy')
         {
             script{
@@ -50,7 +51,6 @@ pipeline {
                     sh 'helm install myrelease final-task'
                     }
             }
-        }
         }
 
     }
