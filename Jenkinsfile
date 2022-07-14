@@ -1,12 +1,8 @@
 #!/usr/bin/env groovy 
 
 pipeline {
-    agent {
-      docker {
-            image 'ubuntu'
-            args '-u root:sudo'
-        }
-    }
+    agent any
+
   tools {
         git 'Default'
     }
@@ -18,6 +14,17 @@ pipeline {
         //         git 'https://github.com/sudhanshu456/helm-charts-assignment.git'
         //     }
         // }
+
+
+        stage("Fix the permission issue") {
+
+            agent any
+
+            steps {
+                sh "sudo chown root:jenkins /run/docker.sock"
+            }
+
+        }
          stage('package') {
                 steps{
                     sh 'wget https://get.helm.sh/helm-v3.6.1-linux-amd64.tar.gz'
