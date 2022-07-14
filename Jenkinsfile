@@ -1,10 +1,10 @@
 #!/usr/bin/env groovy 
 
 pipeline {
-    agent 
+    agent {
       docker {
             image 'ubuntu'
-            args '-u root:sudo '
+            args '-u root:sudo'
         }
     }
   tools {
